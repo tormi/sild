@@ -11,7 +11,7 @@ Add this to your composer.json:
     "repositories":
     {
         "type": "git",
-        "url": "https://github.com/wunderio/drupal-ping"
+        "url": "https://github.com/tormi/sild"
     }
 }
 ```
@@ -28,7 +28,7 @@ Add this to your composer.json:
 
 Then install the composer package as usual with
 ```
-composer require wunderio/drupal-ping:7.x-dev
+composer require tormi/sild:7.x-dev
 ```
 
 
