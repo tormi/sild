@@ -1,0 +1,42 @@
+# The base template. Add adjustments to the .lando.yml file.
+name: sild
+recipe: drupal8
+
+config:
+  via: nginx
+  webroot: web
+  php: 7.2
+  database: mariadb
+
+services:
+  appserver:
+    run:
+      - "cd /app && composer install"
+    overrides:
+      environment:
+        BEHAT_PARAMS: '{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://nginx/"}, "Drupal\\DrupalExtension" : {"drush" :   {  "root":  "/app/web" }}}}'
+  node:
+    type: node:10
+    build:
+      - yarn
+
+tooling:
+  phplint:
+    service: appserver
+    cmd: /app/vendor/bin/phplint
+  phpcs:
+    service: appserver
+    cmd: /app/vendor/bin/phpcs
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit
+  phpstan:
+    service: appserver
+    cmd: /app/vendor/bin/phpstan
+  behat:
+    service: appserver
+    cmd: /app/vendor/bin/behat
+  yarn:
+    service: node
+  npm:
+    service: node
