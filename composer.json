@@ -1,5 +1,5 @@
 {
-  "name": "wunderio/drupal-ping",
+  "name": "tormi/sild",
   "type": "web-dropin",
   "license": "MIT",
   "description": "Drupal health check endpoint for load balancers",
